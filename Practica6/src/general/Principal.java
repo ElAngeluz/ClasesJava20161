@@ -25,10 +25,10 @@ public class Principal {
         do{
             do{
                 imprimirMenu();
-                System.out.print("Ingrese la opción deseada:");
+                System.out.print("Ingrese la opción deseada: ");
                 op = sc.nextInt();
                 if(op<1 || op>2){
-                    System.out.println("La opción ingresada es incorrecta");
+                    System.out.println("La opción ingresada es incorrecta, ingrese solo 1 o 2. ");
                 }
             }while(op<1 || op>2);    
 
@@ -36,7 +36,7 @@ public class Principal {
                 Elevador e = new Elevador();
 
                 System.out.println("PISO ACTUAL: "+e.pisoActual);
-                System.out.print("Ingrese el piso deseado:");
+                System.out.print("Ingrese el piso deseado: ");
                 int piso = sc.nextInt();
                 System.out.println("El piso deseado es "+piso);
                 e.pisoDeseado = piso;
@@ -50,5 +50,4 @@ public class Principal {
         System.out.println("1.- SIMULAR");
         System.out.println("2.- SALIR");    
     }
-    
 }

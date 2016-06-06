@@ -23,7 +23,6 @@ public class Elevador {
             }else{
                bajar();
             }
-        
         }    
     }
     
@@ -38,6 +37,4 @@ public class Elevador {
         System.out.println("Bajando....");
         System.out.println("Piso actual es: "+pisoActual);
     }
-    
-    
 }
