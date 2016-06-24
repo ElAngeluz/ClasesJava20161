@@ -20,8 +20,8 @@ public class principal {
         Scanner sc = new Scanner(System.in);
         System.out.println("ingrese el tamano del arreglo: ");        
         int arregloA[] = new int[sc.nextInt()];
-        int valida = 0;
-        int num = 0;
+        int valida = 0; //controlador de indice
+        int num = 0; //numero que almacena el valor ingresado por el usuario
         while(valida < arregloA.length)
         {
             System.out.println("Ingrese numero (recuerde debe ser mayor a 5 y menor a 20) "+ (valida+1) + " : ");
@@ -31,7 +31,6 @@ public class principal {
                 valida++;
             }else
                 System.out.println("El numero no esta en el rango solicitado. Ingrese nuevo numero");
-            
         }        
         int arregloB[] = new int[arregloA.length];
         valida = 0;
