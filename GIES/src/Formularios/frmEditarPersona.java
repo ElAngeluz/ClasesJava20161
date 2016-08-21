@@ -6,6 +6,7 @@
 package Formularios;
 
 import Entidades.Persona;
+import static Formularios.frmIngresarPersona.diferenciasDeFechas;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
@@ -15,13 +16,25 @@ import javax.swing.JOptionPane;
  *
  * @author Angeluz
  */
-public class frmIngresarPersona extends javax.swing.JFrame {
-
+public class frmEditarPersona extends javax.swing.JFrame {
+    frmPersona frm;
     /**
-     * Creates new form frmIngresarPersona
+     * Creates new form frmEditarPersona
      */
-    public frmIngresarPersona() {
+    public frmEditarPersona(Persona p, frmPersona frm) {
         initComponents();
+        txtCedula.setText(p.getId());
+        txtNombres.setText(p.getNombres());
+        txtApellidos.setText(p.getApellidos());
+        txtNacionalidad.setText(p.getNacionalidad());
+        cmbGenero.setSelectedItem(p.getGenero());
+        dtFecha.setDate(p.getfNacimiento());
+        lblEdad.setText(String.valueOf((int)((diferenciasDeFechas(dtFecha.getDate(), new Date()))/365.25)));
+        txtDireccion.setText(p.getDireccion());
+        cmbEstadoCivil.setSelectedItem(p.getEstadoCivil());
+        txtProfesion.setText(p.getProfesion());
+        cmbTrabajo.setSelectedItem(p.getTrabaja());
+        txtSueldo.setText(p.getSueldo());
     }
 
     /**
@@ -33,19 +46,6 @@ public class frmIngresarPersona extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jXDatePicker2 = new org.jdesktop.swingx.JXDatePicker();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        txtCedula = new javax.swing.JTextField();
-        txtNombres = new javax.swing.JTextField();
-        txtApellidos = new javax.swing.JTextField();
-        btnAceptar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
-        dtFecha = new org.jdesktop.swingx.JXDatePicker();
-        jLabel5 = new javax.swing.JLabel();
-        lblEdad = new javax.swing.JLabel();
         btnCalc = new javax.swing.JButton();
         txtNacionalidad = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -56,24 +56,61 @@ public class frmIngresarPersona extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         txtProfesion = new javax.swing.JTextField();
         txtSueldo = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         cmbGenero = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
         cmbEstadoCivil = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
         cmbTrabajo = new javax.swing.JComboBox<>();
+        txtCedula = new javax.swing.JTextField();
+        txtNombres = new javax.swing.JTextField();
+        txtApellidos = new javax.swing.JTextField();
+        btnAceptar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        dtFecha = new org.jdesktop.swingx.JXDatePicker();
+        jLabel5 = new javax.swing.JLabel();
+        lblEdad = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btnCalc.setText("Calc");
+        btnCalc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Direccion");
+
+        jLabel7.setText("Estado Civil");
+
+        jLabel8.setText("Profesion");
+
+        jLabel9.setText("Trabaja?");
+
+        jLabel10.setText("Sueldo");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Cedula");
 
+        jLabel11.setText("Genero");
+
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Nombres");
+
+        cmbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Uno", "Masculino", "Femenino", "Otros" }));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Apellidos");
 
+        cmbEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Uno", "Soltero-a", "Casado-a", "Union Libre", "Divorciado-a", "Viudo-a" }));
+
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Nacionalidad");
+
+        cmbTrabajo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Uno", "Si", "No" }));
 
         txtCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,31 +142,6 @@ public class frmIngresarPersona extends javax.swing.JFrame {
 
         lblEdad.setText("Edad");
 
-        btnCalc.setText("Calc");
-        btnCalc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCalcActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("Direccion");
-
-        jLabel7.setText("Estado Civil");
-
-        jLabel8.setText("Profesion");
-
-        jLabel9.setText("Trabaja?");
-
-        jLabel10.setText("Sueldo");
-
-        jLabel11.setText("Genero");
-
-        cmbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Uno", "Masculino", "Femenino", "Otros" }));
-
-        cmbEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Uno", "Soltero-a", "Casado-a", "Union Libre", "Divorciado-a", "Viudo-a" }));
-
-        cmbTrabajo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Uno", "Si", "No" }));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,7 +157,7 @@ public class frmIngresarPersona extends javax.swing.JFrame {
                         .addGap(54, 54, 54)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(dtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                                .addComponent(dtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(46, 46, 46)
                                 .addComponent(lblEdad)
                                 .addGap(34, 34, 34)
@@ -247,52 +259,9 @@ public class frmIngresarPersona extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedulaActionPerformed
-
-    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // TODO add your handling code here:
-        if (validar()) {
-
-            Persona p = new Persona
-            (txtCedula.getText(), txtNombres.getText(), txtApellidos.getText(), txtNacionalidad.getText(), cmbGenero.getSelectedItem().toString(),
-                    dtFecha.getDate(), txtDireccion.getText(), cmbEstadoCivil.getSelectedItem().toString(), txtProfesion.getText(),
-            cmbTrabajo.getSelectedItem().toString(),txtSueldo.getText());
-
-            if (archivo.ArchivoP.insertar_registro(p)){
-            JOptionPane.showMessageDialog(null,
-                "Se ingresó correctamente el registro",
-                "Ingreso",JOptionPane.INFORMATION_MESSAGE);
-                btnCancelarActionPerformed(evt);
-            }
-            else
-            JOptionPane.showMessageDialog(null,
-                "Ocurrió un error en el ingreso",
-                "Ingreso",JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btnAceptarActionPerformed
-
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
-        txtApellidos.setText("");
-        txtCedula.setText("");
-        txtNombres.setText("");
-        txtNacionalidad.setText("");
-        cmbGenero.setSelectedIndex(0);
-        dtFecha.setDate(new Date());
-        lblEdad.setText("Edad");        
-        txtDireccion.setText("");
-        cmbEstadoCivil.setSelectedIndex(0);
-        txtProfesion.setText("");
-        cmbTrabajo.setSelectedIndex(0);
-        txtSueldo.setText("");
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void dtFechaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dtFechaFocusLost
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_dtFechaFocusLost
+    private void btnCalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcActionPerformed
+        lblEdad.setText(String.valueOf((int)((diferenciasDeFechas(dtFecha.getDate(), new Date()))/365.25)));
+    }//GEN-LAST:event_btnCalcActionPerformed
 
     public static synchronized int diferenciasDeFechas(Date fechaInicial, Date fechaFinal) {
 
@@ -316,74 +285,31 @@ public class frmIngresarPersona extends javax.swing.JFrame {
         return ((int) dias);
     }
     
-    private void btnCalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcActionPerformed
-        lblEdad.setText(String.valueOf((int)((diferenciasDeFechas(dtFecha.getDate(), new Date()))/365.25)));
-    }//GEN-LAST:event_btnCalcActionPerformed
+    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCedulaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        // TODO add your handling code here:
+        if (validar()) {
+
+            Persona p = new Persona
+            (txtCedula.getText(), txtNombres.getText(), txtApellidos.getText(), txtNacionalidad.getText(), cmbGenero.getSelectedItem().toString(),
+                dtFecha.getDate(), txtDireccion.getText(), cmbEstadoCivil.getSelectedItem().toString(), txtProfesion.getText(),
+                cmbTrabajo.getSelectedItem().toString(),txtSueldo.getText());
+
+            if (archivo.ArchivoP.actualizar_registro(p)){
+                JOptionPane.showMessageDialog(null,
+                    "Se ingresó correctamente el registro",
+                    "Ingreso",JOptionPane.INFORMATION_MESSAGE);
+                btnCancelarActionPerformed(evt);
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmIngresarPersona.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmIngresarPersona.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmIngresarPersona.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmIngresarPersona.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            else
+            JOptionPane.showMessageDialog(null,
+                "Ocurrió un error en el ingreso",
+                "Ingreso",JOptionPane.ERROR_MESSAGE);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmIngresarPersona().setVisible(true);
-            }
-        });
-    }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAceptar;
-    private javax.swing.JButton btnCalc;
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JComboBox<String> cmbEstadoCivil;
-    private javax.swing.JComboBox<String> cmbGenero;
-    private javax.swing.JComboBox<String> cmbTrabajo;
-    private org.jdesktop.swingx.JXDatePicker dtFecha;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker2;
-    private javax.swing.JLabel lblEdad;
-    private javax.swing.JTextField txtApellidos;
-    private javax.swing.JTextField txtCedula;
-    private javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtNacionalidad;
-    private javax.swing.JTextField txtNombres;
-    private javax.swing.JTextField txtProfesion;
-    private javax.swing.JTextField txtSueldo;
-    // End of variables declaration//GEN-END:variables
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     private boolean validar() {
         if (txtApellidos.getText().equals("") && txtCedula.getText().equals("") && txtNombres.getText().equals("") &&
@@ -412,4 +338,54 @@ public class frmIngresarPersona extends javax.swing.JFrame {
         
         return true;
     }
+    
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        txtApellidos.setText("");
+        txtCedula.setText("");
+        txtNombres.setText("");
+        txtNacionalidad.setText("");
+        cmbGenero.setSelectedIndex(0);
+        dtFecha.setDate(new Date());
+        lblEdad.setText("Edad");
+        txtDireccion.setText("");
+        cmbEstadoCivil.setSelectedIndex(0);
+        txtProfesion.setText("");
+        cmbTrabajo.setSelectedIndex(0);
+        txtSueldo.setText("");
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void dtFechaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dtFechaFocusLost
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_dtFechaFocusLost
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnCalc;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JComboBox<String> cmbEstadoCivil;
+    private javax.swing.JComboBox<String> cmbGenero;
+    private javax.swing.JComboBox<String> cmbTrabajo;
+    private org.jdesktop.swingx.JXDatePicker dtFecha;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lblEdad;
+    private javax.swing.JTextField txtApellidos;
+    private javax.swing.JTextField txtCedula;
+    private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtNacionalidad;
+    private javax.swing.JTextField txtNombres;
+    private javax.swing.JTextField txtProfesion;
+    private javax.swing.JTextField txtSueldo;
+    // End of variables declaration//GEN-END:variables
 }

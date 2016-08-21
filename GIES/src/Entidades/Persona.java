@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- *
  * @author Johanna Parrales
  */
 public class Persona implements Serializable{
@@ -17,6 +16,15 @@ public class Persona implements Serializable{
     private String nombres;
     private String apellidos;
     private String nacionalidad;
+    private String genero;
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
     private Date fNacimiento;
     private String direccion;
     private String estadoCivil;
@@ -25,12 +33,13 @@ public class Persona implements Serializable{
     private String sueldo;
 
         //Constructor de Clase PERSONA
-    public Persona(String id, String nombres, String apellidos, String nacionalidad, Date edad, String direccion,
+    public Persona(String id, String nombres, String apellidos, String nacionalidad, String genero, Date edad, String direccion,
             String civil, String profesion,String trabaja, String sueldo){
         this.id = id;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.nacionalidad = nacionalidad;
+        this.genero = genero;
         fNacimiento = edad;
         this.direccion = direccion;
         this.estadoCivil = civil;
@@ -118,16 +127,5 @@ public class Persona implements Serializable{
     
     public void setId(String id){
         this.id = id;
-    }
-    
-    public void imprimirInfoPersona(){
-        System.out.println("███████████████████");
-        System.out.println("███████████████████");
-        System.out.println("     INFORMACION PERSONA");
-        System.out.println("██ ID: "+id);
-        System.out.println("██ Nombres: "+nombres);
-        System.out.println("██ Apellidos: "+apellidos);
-        System.out.println("\n███████████████████");
-        System.out.println("███████████████████\n");
     }
 } //Fin de la clase Persona
