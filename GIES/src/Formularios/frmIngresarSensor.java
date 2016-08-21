@@ -280,10 +280,12 @@ public class frmIngresarSensor extends javax.swing.JFrame {
             Float.parseFloat(txtValorActual.getText()),txtTipo.getText(),Float.parseFloat(txtValorAlarma.getText()),
             txtDescripcion.getText(),Integer.parseInt(txtEstado.getText()));
             
-            if (archivo.Archivo.insertar_registro_sensor(s))
+            if (archivo.ArchivoS.insertar_registro(s)){
             JOptionPane.showMessageDialog(null,
                 "Se ingresó correctamente el registro",
-                "Ingreso",JOptionPane.INFORMATION_MESSAGE);
+                "Ingreso",JOptionPane.INFORMATION_MESSAGE);   
+                btnLimpiarActionPerformed(evt);
+            }
             else
             JOptionPane.showMessageDialog(null,
                 "Ocurrió un error en el ingreso",

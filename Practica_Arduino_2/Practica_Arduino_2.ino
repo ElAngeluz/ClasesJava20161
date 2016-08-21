@@ -6,8 +6,8 @@
 dht DHT;
 
 #define DHT11_PIN 7
-#define SSID        "AP_DIR"
-#define PASSWORD    ""
+#define SSID        "Movistar_7761"
+#define PASSWORD    "20217761"
 #define HOST_NAME   "things.ubidots.com"
 #define HOST_PORT   (80)
 
@@ -17,32 +17,32 @@ ESP8266 wifi(mySerial);
 void setup(void)
 {
     Serial.begin(9600);
-    Serial.print("setup begin\r\n");
+    //Serial.print("setup begin\r\n");
     
-    Serial.print("FW Version:");
-    Serial.println(wifi.getVersion().c_str());
+    //Serial.print("FW Version:");
+    //Serial.println(wifi.getVersion().c_str());
       
     if (wifi.setOprToStationSoftAP()) {
-        Serial.print("to station + softap ok\r\n");
+        //Serial.print("to station + softap ok\r\n");
     } else {
         Serial.print("to station + softap err\r\n");
     }
  
     if (wifi.joinAP(SSID, PASSWORD)) {
-        Serial.print("Join AP success\r\n");
-        Serial.print("IP:");
+        //Serial.print("Join AP success\r\n");
+        //Serial.print("IP:");
         Serial.println( wifi.getLocalIP().c_str());       
     } else {
         Serial.print("Join AP failure\r\n");
     }
     
     if (wifi.disableMUX()) {
-        Serial.print("single ok\r\n");
+        //Serial.print("single ok\r\n");
     } else {
         Serial.print("single err\r\n");
     }
     
-    Serial.print("setup end\r\n");
+    Serial.print("setup wifi end\r\n");
 }
  
 void loop(void)
@@ -63,7 +63,7 @@ void loop(void)
 
     
     if (wifi.createTCP(HOST_NAME, HOST_PORT)) {
-        Serial.print("create tcp ok\r\n");
+        //Serial.print("create tcp ok\r\n");
     } else {
         Serial.print("create tcp err\r\n");
     }    
@@ -75,11 +75,11 @@ void loop(void)
     strcat(str,"}");*/
     //VARIAS VARIABLES
     char *str = (char *)malloc(300);
-    sprintf(str,"POST /api/v1.6/collections/values/?token=S1fEgMUJ8hfl2YfNF1pQMUbcTs6MN8 HTTP/1.1\r\nHost: things.ubidots.com\r\nContent-Type: application/json\r\nContent-Length: ");
+    sprintf(str,"POST /api/v1.6/collections/values/?token=JqacJgbcD7iVkjVilpo6WL7FGeGRWK HTTP/1.1\r\nHost: things.ubidots.com\r\nContent-Type: application/json\r\nContent-Length: ");
     strcat(str,"103");
-    strcat(str,"\r\n\r\n[{\"variable\":\"575253c676254270f4324ed4\",\"value\":");
+    strcat(str,"\r\n\r\n[{\"variable\":\"57b226b876254203d9098f9e\",\"value\":");
     strcat(str,tmp);
-    strcat(str,"},{\"variable\":\"575253d576254271336b6061\",\"value\":");
+    strcat(str,"},{\"variable\":\"57b226c07625420507cbf1b7\",\"value\":");
     strcat(str,hum);
     strcat(str,"}]");
 
@@ -90,15 +90,15 @@ void loop(void)
     
     uint32_t len = wifi.recv(buffer, sizeof(buffer), 10000);
     if (len > 0) {
-        Serial.print("Received:[");
+        //Serial.print("Received:[");
         for(uint32_t i = 0; i < len; i++) {
-            Serial.print((char)buffer[i]);
+            //Serial.print((char)buffer[i]);
         }
-        Serial.print("]\r\n");
+        //Serial.print("]\r\n");
     }
     
     if (wifi.releaseTCP()) {
-        Serial.print("release tcp ok\r\n");
+        //Serial.print("release tcp ok\r\n");
     } else {
         Serial.print("release tcp err\r\n");
     }

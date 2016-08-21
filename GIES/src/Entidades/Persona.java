@@ -6,6 +6,7 @@
 package Entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -15,14 +16,26 @@ public class Persona implements Serializable{
     private String id;
     private String nombres;
     private String apellidos;
-    private int edad;
+    private Date fNacimiento;
+
+    public Persona(String id, String nombre, String apellido, int edad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Date getfNacimiento() {
+        return fNacimiento;
+    }
+
+    public void setfNacimiento(Date fNacimiento) {
+        this.fNacimiento = fNacimiento;
+    }
     
     //Constructor de Clase PERSONA
-    public Persona(String id, String nombres, String apellidos, int edad){
+    public Persona(String id, String nombres, String apellidos, Date edad){
         this.id = id;
         this.nombres = nombres;
         this.apellidos = apellidos;
-        this.edad = edad;
+        fNacimiento = edad;
     }
 
     //Metodos GETTERS y SETTERS de la Clase PERSONA
@@ -41,14 +54,6 @@ public class Persona implements Serializable{
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
     
     public String getId(){
         return id;
@@ -65,7 +70,6 @@ public class Persona implements Serializable{
         System.out.println("██ ID: "+id);
         System.out.println("██ Nombres: "+nombres);
         System.out.println("██ Apellidos: "+apellidos);
-        System.out.println("██ Edad: "+edad);
         System.out.println("\n███████████████████");
         System.out.println("███████████████████\n");
     }

@@ -9,6 +9,7 @@ import Entidades.Sensor;
 import Utilidad.Utilidad;
 import Utilidad.Validacion;
 import java.util.ArrayList;
+import java.util.Date;
 /**
  *
  * @author Johanna Parrales
@@ -19,7 +20,7 @@ public class Editar {
         String id = ""; //Variable almacena ID
         String nombre = ""; //Variable almacena nombre
         String apellido = ""; //Variable almacena apellido
-        int edad = 0; //Variable almacena edad
+        Date edad = null; //Variable almacena edad
         int flag = 0; //Variable que almacena los valores retornados de los metodos de validacion de tipo de dato
         int temp = 0 ; //Variable temporal toma un valor entre 1 y 3
         do{ //Inicio ciclo DoWhile
@@ -62,7 +63,7 @@ public class Editar {
                     }
                 }while(flag != 3); //Fin de ciclo DoWhile
                 do{ //Inicio ciclo DoWhile
-                    edad = Utilidad.leerEnteroPorTeclado("██ Ingrese Edad: ");
+                    //edad = Utilidad.leerEnteroPorTeclado("██ Ingrese Edad: ");
                     flag = Validacion.validarTipoEntero(edad);
                     if (flag==1){
                         Utilidad.mensajeError(flag); //Muestra un mensaje de acuerdo al parametro flag 
@@ -74,7 +75,7 @@ public class Editar {
                 p.setId(id); 
                 p.setNombres(nombre);
                 p.setApellidos(apellido);
-                p.setEdad(edad);
+                p.setfNacimiento(edad);
                 System.out.println("La informacion se ha modificado correctamente");
                 Utilidad.leerTextoPorTecaldo("Presione ENTER para continuar");
         

@@ -64,9 +64,19 @@ public class frmPrincipal extends javax.swing.JFrame {
         mPersona.add(IngresarPersona);
 
         ModificarPersona.setText("Modificar");
+        ModificarPersona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarPersonaActionPerformed(evt);
+            }
+        });
         mPersona.add(ModificarPersona);
 
         EliminarPersona.setText("Eliminar");
+        EliminarPersona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarPersonaActionPerformed(evt);
+            }
+        });
         mPersona.add(EliminarPersona);
 
         jMenu2.add(mPersona);
@@ -82,9 +92,19 @@ public class frmPrincipal extends javax.swing.JFrame {
         mSensor.add(ingresarSensor);
 
         ModificarSensor.setText("Modificar");
+        ModificarSensor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarSensorActionPerformed(evt);
+            }
+        });
         mSensor.add(ModificarSensor);
 
         EliminarSensor.setText("Eliminar");
+        EliminarSensor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarSensorActionPerformed(evt);
+            }
+        });
         mSensor.add(EliminarSensor);
 
         jMenu2.add(mSensor);
@@ -134,6 +154,30 @@ public class frmPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_mConsolaActionPerformed
+
+    private void ModificarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarPersonaActionPerformed
+        // TODO add your handling code here:
+        frmPersona form = new frmPersona();
+        form.setVisible(true);
+    }//GEN-LAST:event_ModificarPersonaActionPerformed
+
+    private void EliminarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarPersonaActionPerformed
+        // TODO add your handling code here:
+        frmPersona form = new frmPersona();
+        form.setVisible(true);
+    }//GEN-LAST:event_EliminarPersonaActionPerformed
+
+    private void ModificarSensorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarSensorActionPerformed
+        // TODO add your handling code here:
+        frmSensor form = new frmSensor();
+        form.setVisible(true);
+    }//GEN-LAST:event_ModificarSensorActionPerformed
+
+    private void EliminarSensorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarSensorActionPerformed
+        // TODO add your handling code here:
+        frmSensor form = new frmSensor();
+        form.setVisible(true);
+    }//GEN-LAST:event_EliminarSensorActionPerformed
 
     /**
      * @param args the command line arguments

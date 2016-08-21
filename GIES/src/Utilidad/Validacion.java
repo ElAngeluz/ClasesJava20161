@@ -8,6 +8,7 @@ package Utilidad;
 import Entidades.Persona;
 import Entidades.Sensor;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -77,4 +78,8 @@ public class Validacion {
             }
             return valor; //valor retornado
     }     
+
+    public static int validarTipoEntero(Date edad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 } //Fin de la clase Validacion

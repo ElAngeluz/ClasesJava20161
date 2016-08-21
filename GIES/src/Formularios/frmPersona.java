@@ -5,6 +5,13 @@
  */
 package Formularios;
 
+import Entidades.Persona;
+import archivo.ArchivoP;
+import java.util.ArrayList;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Angeluz
@@ -38,6 +45,11 @@ public class frmPersona extends javax.swing.JFrame {
         setTitle("Busqueda de Persona");
 
         btnSearch.setText("Buscar");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         btnAcept.setText("Aceptar");
 
@@ -58,6 +70,11 @@ public class frmPersona extends javax.swing.JFrame {
         });
 
         cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Cedula", "Nombres", "Apellidos", "Edad" }));
+        cbTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbTipoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,6 +115,15 @@ public class frmPersona extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDescriptionActionPerformed
 
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        consultarRegistros();
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void cbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbTipoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -136,4 +162,67 @@ public class frmPersona extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtDescription;
     // End of variables declaration//GEN-END:variables
+
+    private void consultarRegistros() {
+        if (formularioValido()) {
+            try {
+                ArrayList<Persona> personas = ArchivoP.obtener_registros();
+                ArrayList<Persona> resultado = new ArrayList<>();
+                String tipo = String.valueOf(cbTipo.getSelectedItem());
+                String descripcion = txtDescription.getText();
+                
+                if(tipo.equals("TODOS")){
+                    resultado = personas;                
+                }else{
+                    for (Persona p:personas) {
+                        if(tipo.equals("CÉDULA") && 
+                                p.getId().contains(descripcion)){
+                            resultado.add(p);
+                        }else if(tipo.equals("NOMBRES") && 
+                                p.getNombres().toUpperCase().contains(descripcion.toUpperCase())){
+                            resultado.add(p);
+                        }
+                    }                
+                }
+                
+                DefaultTableModel dtm = (DefaultTableModel) gridResultados.getModel();
+                dtm.setRowCount(0);
+                for (Persona p:resultado) {
+                    Vector fila = new Vector();
+                    fila.add(p.getId());
+                    fila.add(p.getNombres());
+                    fila.add(p.getApellidos());
+                    fila.add(p.getfNacimiento());
+                    dtm.addRow(fila);
+                }
+            } catch (Exception e) {
+            }
+        }
+    }
+
+    private boolean formularioValido() {
+        String tipo = String.valueOf(cbTipo.getSelectedItem());
+        String descripcion = txtDescription.getText();
+        if(!tipo.equalsIgnoreCase("TODOS") && descripcion.equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(this,
+                    "Debe ingresar una descripción",
+                    "Consulta",
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(tipo.equals("EDAD")){
+            
+            try{
+                Integer.parseInt(descripcion);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this,
+                    "Para la edad debe ingresar un número",
+                    "Consulta",
+                    JOptionPane.ERROR_MESSAGE);
+                return false;
+            }    
+        }
+        
+        return true;
+    }
 }
