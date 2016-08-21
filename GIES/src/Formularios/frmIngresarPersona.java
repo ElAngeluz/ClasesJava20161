@@ -8,7 +8,6 @@ package Formularios;
 import Entidades.Persona;
 import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -240,7 +239,6 @@ public class frmIngresarPersona extends javax.swing.JFrame {
     }
     
     private void btnCalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcActionPerformed
-        
         lblEdad.setText(String.valueOf((int)((diferenciasDeFechas(dtFecha.getDate(), new Date()))/365.25)));
     }//GEN-LAST:event_btnCalcActionPerformed
 

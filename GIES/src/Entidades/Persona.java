@@ -16,10 +16,75 @@ public class Persona implements Serializable{
     private String id;
     private String nombres;
     private String apellidos;
+    private String nacionalidad;
     private Date fNacimiento;
+    private String direccion;
+    private String estadoCivil;
+    private String profesion;
+    private String trabaja;
+    private String sueldo;
 
-    public Persona(String id, String nombre, String apellido, int edad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //Constructor de Clase PERSONA
+    public Persona(String id, String nombres, String apellidos, String nacionalidad, Date edad, String direccion,
+            String civil, String profesion,String trabaja, String sueldo){
+        this.id = id;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.nacionalidad = nacionalidad;
+        fNacimiento = edad;
+        this.direccion = direccion;
+        this.estadoCivil = civil;
+        this.profesion = profesion;
+        this.trabaja = trabaja;
+        this.sueldo = sueldo;
+    }
+    
+    public String getNacionalidad() {
+        return nacionalidad;
+    }
+
+    public void setNacionalidad(String nacionalidad) {
+        this.nacionalidad = nacionalidad;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getEstadoCivil() {
+        return estadoCivil;
+    }
+
+    public void setEstadoCivil(String estadoCivil) {
+        this.estadoCivil = estadoCivil;
+    }
+
+    public String getProfesion() {
+        return profesion;
+    }
+
+    public void setProfesion(String profesion) {
+        this.profesion = profesion;
+    }
+
+    public String getTrabaja() {
+        return trabaja;
+    }
+
+    public void setTrabaja(String trabaja) {
+        this.trabaja = trabaja;
+    }
+
+    public String getSueldo() {
+        return sueldo;
+    }
+
+    public void setSueldo(String sueldo) {
+        this.sueldo = sueldo;
     }
 
     public Date getfNacimiento() {
@@ -30,14 +95,6 @@ public class Persona implements Serializable{
         this.fNacimiento = fNacimiento;
     }
     
-    //Constructor de Clase PERSONA
-    public Persona(String id, String nombres, String apellidos, Date edad){
-        this.id = id;
-        this.nombres = nombres;
-        this.apellidos = apellidos;
-        fNacimiento = edad;
-    }
-
     //Metodos GETTERS y SETTERS de la Clase PERSONA
     public String getNombres() {
         return nombres;
