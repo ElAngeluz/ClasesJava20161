@@ -5,6 +5,8 @@
  */
 package Formularios;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Angeluz
@@ -45,6 +47,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMenu1.setText("Inicio");
 
         jmiSalir.setText("Salir");
+        jmiSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiSalirActionPerformed(evt);
+            }
+        });
         jMenu1.add(jmiSalir);
 
         jMenuBar1.add(jMenu1);
@@ -96,6 +103,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMenu3.setText("Ayuda");
 
         jmIntegrantes.setText("Integrantes");
+        jmIntegrantes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmIntegrantesActionPerformed(evt);
+            }
+        });
         jMenu3.add(jmIntegrantes);
 
         jMenuBar1.add(jMenu3);
@@ -139,6 +151,18 @@ public class frmPrincipal extends javax.swing.JFrame {
         frmIngresarPersona form = new frmIngresarPersona();
         form.setVisible(true);
     }//GEN-LAST:event_IngresarPersonaActionPerformed
+
+    private void jmIntegrantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmIntegrantesActionPerformed
+        // TODO add your handling code here:
+        frmIntegrantes form = new frmIntegrantes();
+        form.setVisible(true);
+    }//GEN-LAST:event_jmIntegrantesActionPerformed
+
+    private void jmiSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSalirActionPerformed
+        // TODO add your handling code here:
+         if(JOptionPane.showConfirmDialog(this, "¿Está seguro de finalizar la aplicación?","Salir",JOptionPane.YES_NO_OPTION)==0)
+            System.exit(0);
+    }//GEN-LAST:event_jmiSalirActionPerformed
 
     /**
      * @param args the command line arguments

@@ -37,6 +37,10 @@ public class Sensor implements Serializable{
         this.descripcion = descripcion;
         this.estado = estado;
     }
+
+    public Sensor() {
+        
+    }
     
     //Metodos GETTERS y SETTERS de la Clase SENSOR
     public String getId() {

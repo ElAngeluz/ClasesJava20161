@@ -244,6 +244,8 @@ public class frmIngresarPersona extends javax.swing.JFrame {
                 .addGap(14, 14, 14))
         );
 
+        getAccessibleContext().setAccessibleName("Ingresar Persona");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 

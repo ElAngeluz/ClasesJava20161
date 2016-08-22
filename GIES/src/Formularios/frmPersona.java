@@ -8,13 +8,6 @@ package Formularios;
 import Entidades.Persona;
 import archivo.ArchivoP;
 import general.ValidacionP;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.awt.event.WindowStateListener;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -148,6 +141,8 @@ public class frmPersona extends javax.swing.JFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
+        getAccessibleContext().setAccessibleName("Mantenimiento Persona");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -275,11 +270,8 @@ public class frmPersona extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        if (JOptionPane.showConfirmDialog(null, "Desea Eliminar el Registro?", "Eliminar", JOptionPane.YES_NO_OPTION) 
-                == JOptionPane.YES_OPTION)                
-            return true;
-        else
-            return false; 
+        return JOptionPane.showConfirmDialog(null, "Desea Eliminar el Registro?", "Eliminar", JOptionPane.YES_NO_OPTION) 
+                == JOptionPane.YES_OPTION; 
     }
     /**
      * @param args the command line arguments
