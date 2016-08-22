@@ -36,7 +36,7 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="ModificarPersona">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Mantenimietno"/>
+                    <Property name="text" type="java.lang.String" value="Personas"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ModificarPersonaActionPerformed"/>
@@ -59,7 +59,7 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="ModificarSensor">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Mantenimiento"/>
+                    <Property name="text" type="java.lang.String" value="Sensores"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ModificarSensorActionPerformed"/>
@@ -73,14 +73,13 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Ayuda"/>
           </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="mConsola">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Consola"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mConsolaActionPerformed"/>
-          </Events>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jmIntegrantes">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Integrantes"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>

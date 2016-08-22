@@ -38,7 +38,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         ingresarSensor = new javax.swing.JMenuItem();
         ModificarSensor = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        mConsola = new javax.swing.JMenu();
+        jmIntegrantes = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,7 +61,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         });
         mPersona.add(IngresarPersona);
 
-        ModificarPersona.setText("Mantenimietno");
+        ModificarPersona.setText("Personas");
         ModificarPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ModificarPersonaActionPerformed(evt);
@@ -81,7 +81,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         });
         mSensor.add(ingresarSensor);
 
-        ModificarSensor.setText("Mantenimiento");
+        ModificarSensor.setText("Sensores");
         ModificarSensor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ModificarSensorActionPerformed(evt);
@@ -94,15 +94,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Ayuda");
-        jMenuBar1.add(jMenu3);
 
-        mConsola.setText("Consola");
-        mConsola.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mConsolaActionPerformed(evt);
-            }
-        });
-        jMenuBar1.add(mConsola);
+        jmIntegrantes.setText("Integrantes");
+        jMenu3.add(jmIntegrantes);
+
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -125,11 +121,6 @@ public class frmPrincipal extends javax.swing.JFrame {
         frmIngresarSensor form = new frmIngresarSensor();
         form.setVisible(true);
     }//GEN-LAST:event_ingresarSensorActionPerformed
-
-    private void mConsolaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mConsolaActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_mConsolaActionPerformed
 
     private void ModificarSensorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarSensorActionPerformed
         // TODO add your handling code here:
@@ -193,8 +184,8 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jmIntegrantes;
     private javax.swing.JMenuItem jmiSalir;
-    private javax.swing.JMenu mConsola;
     private javax.swing.JMenu mPersona;
     private javax.swing.JMenu mSensor;
     // End of variables declaration//GEN-END:variables

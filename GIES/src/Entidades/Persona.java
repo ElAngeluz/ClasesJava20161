@@ -17,14 +17,6 @@ public class Persona implements Serializable{
     private String apellidos;
     private String nacionalidad;
     private String genero;
-
-    public String getGenero() {
-        return genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
     private Date fNacimiento;
     private String direccion;
     private String estadoCivil;
@@ -46,6 +38,14 @@ public class Persona implements Serializable{
         this.profesion = profesion;
         this.trabaja = trabaja;
         this.sueldo = sueldo;
+    }
+    
+        public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
     
     public String getNacionalidad() {

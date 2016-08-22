@@ -40,6 +40,7 @@ public class frmPersona extends javax.swing.JFrame {
         gridResultados = new javax.swing.JTable();
         txtDescription = new javax.swing.JTextField();
         cbTipo = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Busqueda de Persona");
@@ -51,7 +52,7 @@ public class frmPersona extends javax.swing.JFrame {
             }
         });
 
-        btnAcept.setText("Aceptar");
+        btnAcept.setText("Editar");
 
         gridResultados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -76,6 +77,8 @@ public class frmPersona extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Eliminar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,7 +86,6 @@ public class frmPersona extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnAcept)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -92,6 +94,12 @@ public class frmPersona extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnSearch)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAcept)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,7 +112,9 @@ public class frmPersona extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAcept)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAcept)
+                    .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -114,14 +124,21 @@ public class frmPersona extends javax.swing.JFrame {
     private void txtDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescriptionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDescriptionActionPerformed
-
+    
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         consultarRegistros();
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void cbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:        
+        if(!String.valueOf(cbTipo.getSelectedItem()).equals("TODOS")){
+            txtDescription.setEditable(true);
+        }else if(String.valueOf(cbTipo.getSelectedItem()).equals("TODOS")){
+            txtDescription.setEditable(false);
+        }
+                
+        txtDescription.setText("");
     }//GEN-LAST:event_cbTipoActionPerformed
 
     /**
@@ -159,6 +176,7 @@ public class frmPersona extends javax.swing.JFrame {
     private javax.swing.JButton btnSearch;
     private javax.swing.JComboBox<String> cbTipo;
     private javax.swing.JTable gridResultados;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtDescription;
     // End of variables declaration//GEN-END:variables
@@ -175,12 +193,15 @@ public class frmPersona extends javax.swing.JFrame {
                     resultado = personas;                
                 }else{
                     for (Persona p:personas) {
-                        if(tipo.equals("CÉDULA") && 
-                                p.getId().contains(descripcion)){
+                        if(tipo.equals("Cedula") && 
+                                p.getId().toLowerCase().contains(descripcion.toLowerCase())){
                             resultado.add(p);
-                        }else if(tipo.equals("NOMBRES") && 
-                                p.getNombres().toUpperCase().contains(descripcion.toUpperCase())){
+                        }else if(tipo.equals("Nombres") && 
+                                p.getNombres().toLowerCase().contains(descripcion.toLowerCase())){
                             resultado.add(p);
+                        }else if (tipo.equals("Apellidos") && 
+                                p.getNombres().toLowerCase().contains(descripcion.toLowerCase())) {
+                            
                         }
                     }                
                 }
