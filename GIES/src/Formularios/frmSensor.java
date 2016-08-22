@@ -53,6 +53,7 @@ public class frmSensor extends javax.swing.JFrame {
         bConsultar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Mantenimiento Sensor");
 
         bEditar.setText("EDITAR");
         bEditar.addActionListener(new java.awt.event.ActionListener() {

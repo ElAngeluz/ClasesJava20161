@@ -199,7 +199,7 @@ public class frmPersona extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
                 
                 }
-                
+                 
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this,
                     "Ocurrió un error al consultar el archivo",

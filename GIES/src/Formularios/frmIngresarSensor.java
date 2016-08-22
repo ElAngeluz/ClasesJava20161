@@ -54,6 +54,7 @@ public class frmIngresarSensor extends javax.swing.JFrame {
         btnLimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Ingresar Sensor");
 
         txtCodigo.setAutoscrolls(false);
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
@@ -225,15 +226,15 @@ public class frmIngresarSensor extends javax.swing.JFrame {
 
     private boolean validar()
     {
-        if (txtCodigo.getText().equals("") &&
-                txtNombre.getText().equals("") &&
-                txtFabricante.getText().equals("") &&
-                txtModelo.getText().equals("") &&
-                txtUbicacion.getText().equals("") &&
-                txtValorActual.getText().equals("") &&
-                txtTipo.getText().equals("") &&
-                txtValorAlarma.getText().equals("") &&
-                txtDescripcion.getText().equals("") &&
+        if (txtCodigo.getText().equals("") ||
+                txtNombre.getText().equals("") ||
+                txtFabricante.getText().equals("") ||
+                txtModelo.getText().equals("") ||
+                txtUbicacion.getText().equals("") ||
+                txtValorActual.getText().equals("") ||
+                txtTipo.getText().equals("") ||
+                txtValorAlarma.getText().equals("") ||
+                txtDescripcion.getText().equals("") ||
                 txtEstado.getText().equals("")) {
             JOptionPane.showMessageDialog(null,
              "Formulario incompleto",

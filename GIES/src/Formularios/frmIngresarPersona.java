@@ -62,6 +62,7 @@ public class frmIngresarPersona extends javax.swing.JFrame {
         cmbTrabajo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Ingresar Persona");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Cedula");
@@ -319,7 +320,14 @@ public class frmIngresarPersona extends javax.swing.JFrame {
     }
     
     private void btnCalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcActionPerformed
-        lblEdad.setText(String.valueOf((int)((diferenciasDeFechas(dtFecha.getDate(), new Date()))/365.25)));
+        try {
+            lblEdad.setText(String.valueOf((int)((diferenciasDeFechas(dtFecha.getDate(), new Date()))/365.25)));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+             "No ha ingresado una fecha valida, intentelo nuevamente",
+             "Ingreso",JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_btnCalcActionPerformed
 
     /**
@@ -388,9 +396,9 @@ public class frmIngresarPersona extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private boolean validar() {
-        if (txtApellidos.getText().equals("") && txtCedula.getText().equals("") && txtNombres.getText().equals("") &&
-        txtNacionalidad.getText().equals("") && cmbGenero.getSelectedItem().equals("Seleccione Uno")  && txtDireccion.getText().equals("") && cmbEstadoCivil.getSelectedItem().equals("Seleccione Uno") &&
-                txtProfesion.getText().equals("") && cmbTrabajo.getSelectedItem().equals("Seleccione Uno") && txtSueldo.getText().equals("")) {
+        if (txtApellidos.getText().equals("") || txtCedula.getText().equals("") || txtNombres.getText().equals("") ||
+        txtNacionalidad.getText().equals("") || cmbGenero.getSelectedItem().equals("Seleccione Uno")  || txtDireccion.getText().equals("") || cmbEstadoCivil.getSelectedItem().equals("Seleccione Uno") ||
+                txtProfesion.getText().equals("") || cmbTrabajo.getSelectedItem().equals("Seleccione Uno") || txtSueldo.getText().equals("")) {
             JOptionPane.showMessageDialog(null,
              "Formulario incompleto, llene todos los campos o seleccione una opcion valida",
              "Ingreso",JOptionPane.ERROR_MESSAGE);
@@ -399,6 +407,15 @@ public class frmIngresarPersona extends javax.swing.JFrame {
         if (lblEdad.getText().equals("Edad")) {
             JOptionPane.showMessageDialog(null,
              "Presione el Boton Calc que valide la edad si esta correcta, antes de guardar el registro",
+             "Ingreso",JOptionPane.ERROR_MESSAGE);
+            return false;
+        }        
+        
+        try {
+            Integer.parseInt(txtCedula.getText());            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+             "la Cedula debe ser un numero valido",
              "Ingreso",JOptionPane.ERROR_MESSAGE);
             return false;
         }
