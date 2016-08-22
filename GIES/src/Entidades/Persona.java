@@ -40,6 +40,10 @@ public class Persona implements Serializable{
         this.sueldo = sueldo;
     }
     
+    public Persona(){
+        
+    }
+    
         public String getGenero() {
         return genero;
     }

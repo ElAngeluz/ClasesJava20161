@@ -7,6 +7,14 @@ package Formularios;
 
 import Entidades.Persona;
 import archivo.ArchivoP;
+import general.ValidacionP;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.awt.event.WindowStateListener;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -23,6 +31,11 @@ public class frmPersona extends javax.swing.JFrame {
      */
     public frmPersona() {
         initComponents();
+        if(String.valueOf(cbTipo.getSelectedItem()).equals("Todos"))
+            txtDescription.setEditable(false);
+        else
+            txtDescription.setEditable(true);   
+        txtDescription.setText("");        
     }
 
     /**
@@ -44,6 +57,11 @@ public class frmPersona extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Busqueda de Persona");
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
 
         btnSearch.setText("Buscar");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -53,13 +71,18 @@ public class frmPersona extends javax.swing.JFrame {
         });
 
         btnAcept.setText("Editar");
+        btnAcept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptActionPerformed(evt);
+            }
+        });
 
         gridResultados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Cedula", "Nombres", "Apellidos", "Edad"
+                "Cedula", "Nombres", "Apellidos", "Nacionalidad", "Genero", "Fecha Nacimiento", "Direccion", "Estado Civil", "Profesion", "Trabaja?", "Sueldo"
             }
         ));
         jScrollPane1.setViewportView(gridResultados);
@@ -70,7 +93,7 @@ public class frmPersona extends javax.swing.JFrame {
             }
         });
 
-        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Cedula", "Nombres", "Apellidos", "Edad" }));
+        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Cedula", "Nombres", "Apellidos", "Nacionalidad", "Estado Civil", "Profesion", "Trabaja" }));
         cbTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbTipoActionPerformed(evt);
@@ -78,6 +101,11 @@ public class frmPersona extends javax.swing.JFrame {
         });
 
         jButton1.setText("Eliminar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,21 +113,23 @@ public class frmPersona extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDescription)
+                        .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnSearch)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAcept)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addGap(15, 15, 15))
+                        .addComponent(btnSearch)
+                        .addContainerGap(490, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnAcept)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1)))
+                        .addGap(15, 15, 15))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,7 +145,7 @@ public class frmPersona extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAcept)
                     .addComponent(jButton1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -130,8 +160,8 @@ public class frmPersona extends javax.swing.JFrame {
         consultarRegistros();
     }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void cbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoActionPerformed
-        // TODO add your handling code here:        
+    private void suca()
+    {
         if(!String.valueOf(cbTipo.getSelectedItem()).equals("TODOS")){
             txtDescription.setEditable(true);
         }else if(String.valueOf(cbTipo.getSelectedItem()).equals("TODOS")){
@@ -139,8 +169,118 @@ public class frmPersona extends javax.swing.JFrame {
         }
                 
         txtDescription.setText("");
+    }
+    private void cbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoActionPerformed
+        // TODO add your handling code here:        
+        if(String.valueOf(cbTipo.getSelectedItem()).equals("Todos"))
+            txtDescription.setEditable(false);
+        else
+            txtDescription.setEditable(true);   
+        txtDescription.setText("");
     }//GEN-LAST:event_cbTipoActionPerformed
 
+    private void btnAceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptActionPerformed
+        // TODO add your handling code here:
+        if(seleccionEdicionValida()){
+            String cedula = String.valueOf(gridResultados.getValueAt(gridResultados.getSelectedRow(),0));
+            boolean encontrado = false;
+            Persona pEncontrado = null;
+            try{
+                ArrayList<Persona> personas = ArchivoP.obtener_registros();
+                for (Persona p:personas) {
+                    if(p.getId().equalsIgnoreCase(cedula)){
+                        encontrado = true;
+                        pEncontrado = p;
+                        break;
+                    }                    
+                }
+                if(encontrado){
+                    frmEditarPersona frm = new frmEditarPersona(pEncontrado,this);
+                    frm.setVisible(true);                
+                }else{
+                     JOptionPane.showMessageDialog(this,
+                    "El registro a editar ya no existe",
+                    "Edición",
+                    JOptionPane.ERROR_MESSAGE);
+                
+                }
+                
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this,
+                    "Ocurrió un error al consultar el archivo",
+                    "Edición",
+                    JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnAceptActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if(seleccionEliminacionValida()){
+            ArrayList<Persona> eliminados= new ArrayList<Persona>(); 
+            for (int i = 0; i < gridResultados.getSelectedRows().length; i++) {
+                Persona p = new Persona();
+                p.setId(String.valueOf(gridResultados.getValueAt(gridResultados.getSelectedRows()[i],0)));
+                eliminados.add(p);
+            }
+            try{
+                ArrayList<Persona> registros = ArchivoP.obtener_registros();
+                for (int i = 0; i < eliminados.size(); i++) 
+                    registros.remove(ValidacionP.existePersona(registros, eliminados.get(i)));
+                        
+                if(ArchivoP.actualizar_registros(registros)){
+                    JOptionPane.showMessageDialog(this,
+                    "Se realizó la eliminación correctamente",
+                    "Eliminación",
+                    JOptionPane.ERROR_MESSAGE);
+                    consultarRegistros();
+                }else {
+                    JOptionPane.showMessageDialog(this,
+                    "Ocurrió un erro en la eliminación",
+                    "Eliminación",
+                    JOptionPane.ERROR_MESSAGE);
+                }
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this,
+                    "Ocurrió un error al consultar el archivo",
+                    "Eliminación",
+                    JOptionPane.ERROR_MESSAGE);            
+            }    
+        
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formFocusGained
+
+    public boolean seleccionEdicionValida(){
+        
+        if(gridResultados.getSelectedRowCount()!=1){
+            JOptionPane.showMessageDialog(this,
+                    "Debe seleccionar un registro a editar",
+                    "Edición",
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        
+        return true;    
+    }
+    
+    public boolean seleccionEliminacionValida(){
+        if(gridResultados.getSelectedRowCount()==0){
+            JOptionPane.showMessageDialog(this,
+                    "Debe seleccionar mínimo un registro a eliminar",
+                    "Eliminación",
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (JOptionPane.showConfirmDialog(null, "Desea Eliminar el Registro?", "Eliminar", JOptionPane.YES_NO_OPTION) 
+                == JOptionPane.YES_OPTION)                
+            return true;
+        else
+            return false; 
+    }
     /**
      * @param args the command line arguments
      */
@@ -168,7 +308,7 @@ public class frmPersona extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new frmPersona().setVisible(true);
-        });
+        });        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -189,7 +329,7 @@ public class frmPersona extends javax.swing.JFrame {
                 String tipo = String.valueOf(cbTipo.getSelectedItem());
                 String descripcion = txtDescription.getText();
                 
-                if(tipo.equals("TODOS")){
+                if(tipo.equals("Todos")){
                     resultado = personas;                
                 }else{
                     for (Persona p:personas) {
@@ -200,8 +340,20 @@ public class frmPersona extends javax.swing.JFrame {
                                 p.getNombres().toLowerCase().contains(descripcion.toLowerCase())){
                             resultado.add(p);
                         }else if (tipo.equals("Apellidos") && 
-                                p.getNombres().toLowerCase().contains(descripcion.toLowerCase())) {
-                            
+                                p.getApellidos().toLowerCase().contains(descripcion.toLowerCase())) {
+                            resultado.add(p);
+                        }else if (tipo.equals("Nacionalidad") && 
+                                p.getNacionalidad().toLowerCase().contains(descripcion.toLowerCase())) {
+                            resultado.add(p);
+                        }else if (tipo.equals("Estado Civil") && 
+                                p.getEstadoCivil().toLowerCase().contains(descripcion.toLowerCase())) {
+                            resultado.add(p);
+                        }else if (tipo.equals("Profesion") && 
+                                p.getProfesion().toLowerCase().contains(descripcion.toLowerCase())) {
+                            resultado.add(p);
+                        }else if (tipo.equals("Trabaja") && 
+                                p.getTrabaja().toLowerCase().contains(descripcion.toLowerCase())) {
+                            resultado.add(p);
                         }
                     }                
                 }
@@ -213,7 +365,14 @@ public class frmPersona extends javax.swing.JFrame {
                     fila.add(p.getId());
                     fila.add(p.getNombres());
                     fila.add(p.getApellidos());
+                    fila.add(p.getNacionalidad());
+                    fila.add(p.getGenero());
                     fila.add(p.getfNacimiento());
+                    fila.add(p.getDireccion());
+                    fila.add(p.getEstadoCivil());
+                    fila.add(p.getProfesion());
+                    fila.add(p.getTrabaja());
+                    fila.add(p.getSueldo());
                     dtm.addRow(fila);
                 }
             } catch (Exception e) {
@@ -242,8 +401,7 @@ public class frmPersona extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
                 return false;
             }    
-        }
-        
+        }        
         return true;
     }
 }
