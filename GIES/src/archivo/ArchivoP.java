@@ -5,15 +5,10 @@
  */
 package archivo;
 
-import archivo.EscribirArchivo;
-import archivo.LeerArchivo;
 import Entidades.Persona;
-import archivo.EscribirArchivo;
-import archivo.LeerArchivo;
 import general.ValidacionP;
 import java.io.IOException;
 import java.util.ArrayList;
-//import utilidades.Validacion;
 
 /**
  *

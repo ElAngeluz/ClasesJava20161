@@ -4,11 +4,7 @@
  * and open the template in the editor.
  */
 package archivo;
-import archivo.EscribirArchivo;
-import archivo.LeerArchivo;
 import Entidades.Sensor;
-import archivo.EscribirArchivo;
-import archivo.LeerArchivo;
 import general.ValidacionS;
 import java.io.IOException;
 import java.util.ArrayList;

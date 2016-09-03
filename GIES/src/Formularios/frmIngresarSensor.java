@@ -39,7 +39,6 @@ public class frmIngresarSensor extends javax.swing.JFrame {
         txtTipo = new javax.swing.JTextField();
         txtValorAlarma = new javax.swing.JTextField();
         txtDescripcion = new javax.swing.JTextField();
-        txtEstado = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -52,6 +51,7 @@ public class frmIngresarSensor extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         btnAceptar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
+        cmbEstado = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ingresar Sensor");
@@ -78,8 +78,6 @@ public class frmIngresarSensor extends javax.swing.JFrame {
         txtValorAlarma.setAutoscrolls(false);
 
         txtDescripcion.setAutoscrolls(false);
-
-        txtEstado.setAutoscrolls(false);
 
         jLabel1.setText("Codigo");
 
@@ -115,6 +113,8 @@ public class frmIngresarSensor extends javax.swing.JFrame {
             }
         });
 
+        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Uno", "A", "I" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -135,17 +135,6 @@ public class frmIngresarSensor extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                            .addComponent(txtCodigo)
-                            .addComponent(txtUbicacion)
-                            .addComponent(txtValorActual)
-                            .addComponent(txtTipo)
-                            .addComponent(txtValorAlarma)
-                            .addComponent(txtDescripcion)
-                            .addComponent(txtEstado))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtFabricante, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
                             .addComponent(txtModelo))
@@ -153,7 +142,18 @@ public class frmIngresarSensor extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnAceptar, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(40, 40, 40))))
+                        .addGap(40, 40, 40))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNombre)
+                            .addComponent(txtCodigo)
+                            .addComponent(txtUbicacion)
+                            .addComponent(txtValorActual)
+                            .addComponent(txtTipo)
+                            .addComponent(txtValorAlarma)
+                            .addComponent(txtDescripcion)
+                            .addComponent(cmbEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,9 +198,9 @@ public class frmIngresarSensor extends javax.swing.JFrame {
                     .addComponent(jLabel9))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addGap(14, 14, 14))
+                    .addComponent(jLabel10)
+                    .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13))
         );
 
         pack();
@@ -221,7 +221,7 @@ public class frmIngresarSensor extends javax.swing.JFrame {
         txtTipo.setText("");
         txtValorAlarma.setText("");
         txtDescripcion.setText("");
-        txtEstado.setText("");
+        cmbEstado.setSelectedIndex(0);
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private boolean validar()
@@ -234,10 +234,9 @@ public class frmIngresarSensor extends javax.swing.JFrame {
                 txtValorActual.getText().equals("") ||
                 txtTipo.getText().equals("") ||
                 txtValorAlarma.getText().equals("") ||
-                txtDescripcion.getText().equals("") ||
-                txtEstado.getText().equals("")) {
+                txtDescripcion.getText().equals("")) {
             JOptionPane.showMessageDialog(null,
-             "Formulario incompleto",
+             "Formulario incompleto, o Seleccion no valida",
              "Ingreso",JOptionPane.ERROR_MESSAGE);
             return false;
         }
@@ -250,9 +249,9 @@ public class frmIngresarSensor extends javax.swing.JFrame {
             return false;
         }  
         try{
-            if (!(Integer.parseInt(txtEstado.getText()) ==0 || Integer.parseInt(txtEstado.getText())==1)) {
+            if (cmbEstado.getSelectedItem().toString().equals("Seleccione Uno")) {
                 JOptionPane.showMessageDialog(null,
-             "Debe ingrese solo números binarios en el valor estado",
+             "Debe Seleccionar una opcion valida",
              "Ingreso",JOptionPane.ERROR_MESSAGE);
             return false;
             }
@@ -273,13 +272,20 @@ public class frmIngresarSensor extends javax.swing.JFrame {
         return true;
     }
     
+    private int cambiarEstado(String value){
+        if (value.equalsIgnoreCase("A")) {
+            return 1;
+        }
+        return 0;
+    }
+    
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
         if (validar()) {
             Sensor s = new Sensor(txtCodigo.getText(),txtNombre.getText(),
             txtFabricante.getText(),txtModelo.getText(),txtUbicacion.getText(),
             Float.parseFloat(txtValorActual.getText()),txtTipo.getText(),Float.parseFloat(txtValorAlarma.getText()),
-            txtDescripcion.getText(),Integer.parseInt(txtEstado.getText()));
+            txtDescripcion.getText(),cambiarEstado(cmbEstado.getSelectedItem().toString()));
             
             if (archivo.ArchivoS.insertar_registro(s)){
             JOptionPane.showMessageDialog(null,
@@ -332,6 +338,7 @@ public class frmIngresarSensor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnLimpiar;
+    private javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -344,7 +351,6 @@ public class frmIngresarSensor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescripcion;
-    private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtFabricante;
     private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtNombre;
